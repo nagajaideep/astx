@@ -36,6 +36,7 @@ from astx.callables import (
     Argument,
     Arguments,
     AwaitExpr,
+    Comprehension,
     FunctionAsyncDef,
     FunctionCall,
     FunctionDef,
@@ -116,6 +117,7 @@ from astx.modifiers import (
 from astx.operators import (
     AssignmentExpr,
     AugAssign,
+    CompareOp,
     VariableAssignment,
     WalrusOp,
 )
@@ -217,9 +219,11 @@ __all__ = [
     "ClassDeclStmt",
     "ClassDefStmt",
     "CollectionType",
+    "CompareOp",
     "Complex",
     "Complex32",
     "Complex64",
+    "Comprehension",
     "DataType",
     "DataTypeOps",
     "Date",
