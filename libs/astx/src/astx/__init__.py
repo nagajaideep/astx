@@ -182,6 +182,7 @@ from astx.types import (
     XorOp,
 )
 from astx.variables import (
+    DeleteStmt,
     InlineVariableDeclaration,
     Variable,
     VariableDeclaration,
@@ -193,7 +194,7 @@ def get_version() -> str:
     try:
         return importlib_metadata.version(__name__)
     except importlib_metadata.PackageNotFoundError:  # pragma: no cover
-        return "0.19.0"  # semantic-release
+        return "0.20.0"  # semantic-release
 
 
 __all__ = [
@@ -228,6 +229,7 @@ __all__ = [
     "DataTypeOps",
     "Date",
     "DateTime",
+    "DeleteStmt",
     "DictType",
     "EnumDeclStmt",
     "ExceptionHandlerStmt",

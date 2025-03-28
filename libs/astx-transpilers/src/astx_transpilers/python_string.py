@@ -2,12 +2,11 @@
 
 from typing import Union, cast
 
-from plum import dispatch
-
 import astx
 import astx.operators
 
 from astx.tools.typing import typechecked
+from plum import dispatch
 
 
 @typechecked
@@ -148,6 +147,12 @@ class ASTxPythonTranspiler:
         """Handle ClassDefStmt nodes."""
         class_type = "(ABC)" if node.is_abstract else ""
         return f"class {node.name}{class_type}:\n{self.visit(node.body)}"
+
+    @dispatch  # type: ignore[no-redef]
+    def visit(self, node: astx.DeleteStmt) -> str:
+        """Transpile a DeleteStmt node to Python code."""
+        targets = ", ".join(self.visit(target) for target in node.value)
+        return f"del {targets}"
 
     @dispatch  # type: ignore[no-redef]
     def visit(self, node: astx.EnumDeclStmt) -> str:
