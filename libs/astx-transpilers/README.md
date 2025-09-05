@@ -133,6 +133,32 @@ example:
 >>> print(add_function.to_yaml())
 ```
 
+## Transpilers
+
+ASTx includes transpilers that can convert your AST structures into Python code.
+This makes it easy to generate executable Python from your abstract
+representations.
+
+```python
+from astx_transpilers.python_string import ASTxPythonTranspiler
+
+# Using the same add_function from above
+transpiler = ASTxPythonTranspiler()
+python_code = transpiler.visit(add_function)
+print(python_code)
+```
+
+**Output:**
+
+```python
+def add(x: int, y: int) -> int:
+    return (x + y)
+```
+
+The transpiler handles various ASTx constructs including functions, variables,
+expressions, and control flow. For comprehensive examples and detailed usage,
+check out our [transpiler documentation](https://arxlang.github.io/astx).
+
 ---
 
 ## 📚 Documentation
