@@ -1,173 +1,90 @@
-# ASTx: Abstract Syntax Tree Framework
+# ASTx Library: A Versatile Toolkit for Language Representation
 
-![CI](https://img.shields.io/github/actions/workflow/status/arxlang/astx/main.yaml?logo=github&label=CI)
-[![Python Versions](https://img.shields.io/pypi/pyversions/astx)](https://pypi.org/project/astx/)
-[![Package Version](https://img.shields.io/pypi/v/astx?color=blue)](https://pypi.org/project/astx/)
-![License](https://img.shields.io/pypi/l/astx?color=blue)
-![Discord](https://img.shields.io/discord/966124290464428042?logo=discord&color=blue)
+ASTx is a groundbreaking library designed to encapsulate language components in
+an agnostic and pythonic way. It provides a comprehensive set of classes and
+functionalities, allowing developers to articulate the core elements of any
+programming language.
 
-ASTx is a Python library for representing and working with Abstract Syntax Trees
-(ASTs). It provides a unified interface for building tools such as compilers,
-interpreters, and transpilers.
+- License: BSD 3 Clause
+- Documentation: https://astx.arxlang.org
 
-With ASTx, you can define language constructs, transform ASTs, generate code,
-and build tools for analysis.
+## Core Features
 
-ASTx is not a lexer or parser. It can be used together with parsers to provide a
-higher-level representation of the AST.
+### 1. **Expressive Language Components**
 
-It integrates with [IRx](https://github.com/arxlang/irx), enabling code
-generation with **LLVM**. Currently, only a subset of ASTx nodes is supported,
-but active development is underway.
+ASTx offers a rich suite of classes to describe essential language constructs
+such as:
 
-**Note:** This project is under active development and not ready for production
-use.
+- `If` statements
+- `For` loops
+- `Function` declarations and usages
+- Variables
+- Data Types
+- Operations
+- And more
 
----
+These classes enable a concise and clear representation, providing an intuitive
+way to model various programming constructs.
 
-## 🚀 Features
+### 2. **Symbol Table Class**
 
-- Language-agnostic: works across different programming languages
-- Extensible: add new nodes or extend existing ones
-- Code generation: convert ASTs to Python code (other backends planned)
-- Includes common constructs: variables, functions, control flow, types
-- Initial Symbol Table implementation included
+An integral part of ASTx, the Symbol Table class facilitates the translation of
+ASTx expressions to other languages like LLVM-IR. This class acts as a mapping
+layer, allowing a seamless connection between ASTx expressions and target
+language representations.
 
----
+### 3. **Language Agnostic Design**
 
-## 📦 Installation
+Uniquely tailored to be independent of specific programming languages, ASTx
+offers a flexible foundation. It strives to provide initial components that can
+describe any programming language, giving users the freedom to work with
+multiple languages effortlessly.
 
-Install ASTx from PyPI:
+### 4. **Integration with Projects like ARX-IR**
 
-```bash
-pip install astx
-```
-
----
-
-## 📖 Overview
-
-ASTx is designed around two primary concepts:
-
-- **Nodes**: Each node represents a language construct (e.g., `Variable`,
-  `Function`, `IfStmt`).
-- **Tree**: Nodes are organized hierarchically, forming an abstract
-  representation of the program structure.
-
-Additionally, ASTx provides a simple transpiler for converting ASTx nodes to
-Python code (in text format). This feature is intended solely for educational
-purposes, demonstrating how a transpiler from ASTx to any other language can be
-implemented.
+ASTx has proven to be a vital tool in projects like ARX-IR, where it's leveraged
+to translate Abstract Syntax Trees (AST) into LLVM-IR. This showcases the
+library's adaptability and potential to serve as a foundational layer in various
+applications.
 
 ---
 
-## ✨ Usage
+## New Transpiler System
 
-### 1. Create an AST
+ASTx includes a powerful and redesigned transpiler system that allows you to
+convert ASTx nodes into Python code. The new architecture separates the process
+into two distinct steps:
 
-```python
-import astx
+1. **ASTx → Python AST Objects**: Converts ASTx nodes into Python's built-in AST
+   objects.
+2. **ASTx → Python Source Code**: Converts ASTx nodes directly into executable
+   Python code.
 
-# Define a simple function `add(x, y): return x + y`
-args = astx.Arguments(
-    astx.Argument(name="x", type_=astx.Int32()),
-    astx.Argument(name="y", type_=astx.Int32()),
-)
-fn_body = astx.Block()
-fn_body.append(
-    astx.FunctionReturn(
-        value=astx.BinaryOp(op_code="+", lhs=astx.Variable("x"), rhs=astx.Variable("y"))
-    )
-)
-add_function = astx.FunctionDef(
-    prototype=astx.FunctionPrototype(name="add", args=args, return_type=astx.Int32()),
-    body=fn_body,
-)
-```
+This separation improves maintainability, eliminates circular dependencies, and
+makes the transpiler system more extensible.
 
-### 2. Generate Code
-
-Use a transpiler to convert the AST to Python code:
-
-```python
-from astx_transpilers.python_string import ASTxPythonTranspiler
-
-# Transpile the AST to Python
-transpiler = ASTxPythonTranspiler()
-python_code = transpiler.visit(add_function)
-
-print(python_code)
-```
-
-**Output:**
-
-```python
-def add(x: int, y: int) -> int:
-    return (x + y)
-```
-
-### 3. ASTx Visualization Features
-
-ASTx offers multiple ways to visualize the AST structure:
-
-- YAML
-- JSON
-- Graphical visualization (PNG or ASCII)
-
-In a Jupyter Notebook, the default graphical visualization is PNG, while in a
-console, the default is ASCII.
-
-You can also print the AST structure in JSON or YAML format. For example:
-
-```python
-print(add_function.to_json())
-print(add_function.to_yaml())
-```
+For detailed usage instructions and examples, check out the
+**[Transpiler Tutorial](tutorials/astx_transpiler_refactor_tutorial.md)**.
 
 ---
 
-## 🔄 Transpilers
+## Why Choose ASTx?
 
-ASTx includes a transpiler system for converting AST structures into Python
-code. This can be used for code generation, prototyping, or experimenting with
-language tools.
+ASTx is not just a library; it's a robust framework that fosters creativity and
+efficiency in language processing. Its pythonic design, combined with the power
+to handle different language constructs, positions ASTx as an invaluable
+resource for developers and researchers alike.
 
-```python
-from astx_transpilers.python_string import ASTxPythonTranspiler
+Whether you're building a compiler, working on language translation, or
+exploring new frontiers in programming language design, ASTx offers a reliable
+and extensible toolkit to support your endeavors.
 
-# Using the 'add_function' ASTx node from the example above
-transpiler = ASTxPythonTranspiler()
-python_code = transpiler.visit(add_function)
-print(python_code)
-```
+## Getting Started
 
-**Output:**
+You can explore the ASTx library and dive into its capabilities by accessing the
+official documentation. For those interested in contributing or seeking further
+insights, the ASTx community provides extensive support and collaboration
+opportunities.
 
-```python
-def add(x: int, y: int) -> int:
-    return (x + y)
-```
-
-For a deep dive into the architecture and more hands-on examples, check out our
-**[full transpiler tutorial](tutorials/astx_transpiler_refactor_tutorial.md)**.
-
----
-
-## 📚 Documentation
-
-Full documentation and examples:
-[https://arxlang.github.io/astx](https://arxlang.github.io/astx)
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! See the
-[Contributing Guide](https://astx.arxlang.org/contributing/) for details.
-
----
-
-## 📝 License
-
-ASTx is open-source software licensed under the **BSD-3-Clause License**. See
-[LICENSE](LICENSE) for details.
+Unlock the potential of language representation with ASTx, and join us in
+shaping the future of programming languages.
