@@ -47,16 +47,17 @@ pip install astx
 
 ## 📖 Overview
 
-ASTx is designed around two main concepts:
+ASTx is designed around two primary concepts:
 
-1. **Nodes**: each node represents a language construct (e.g., `Variable`,
-   `Function`, `IfStmt`)
-2. **Tree**: nodes are organized hierarchically, forming an abstract
-   representation of the program
+- **Nodes**: Each node represents a language construct (e.g., `Variable`,
+  `Function`, `IfStmt`).
+- **Tree**: Nodes are organized hierarchically, forming an abstract
+  representation of the program structure.
 
-ASTx also includes a simple transpiler for converting ASTx nodes to Python code
-(text). This feature is for educational purposes, showing how a transpiler can
-be implemented.
+Additionally, ASTx provides a simple transpiler for converting ASTx nodes to
+Python code (in text format). This feature is intended solely for educational
+purposes, demonstrating how a transpiler from ASTx to any other language can be
+implemented.
 
 ---
 
@@ -67,7 +68,7 @@ be implemented.
 ```python
 import astx
 
-# Define a simple function: add(x, y) -> x + y
+# Define a simple function `add(x, y): return x + y`
 args = astx.Arguments(
     astx.Argument(name="x", type_=astx.Int32()),
     astx.Argument(name="y", type_=astx.Int32()),
@@ -91,31 +92,32 @@ Use a transpiler to convert the AST to Python code:
 ```python
 from astx_transpilers.python_string import ASTxPythonTranspiler
 
+# Transpile the AST to Python
 transpiler = ASTxPythonTranspiler()
 python_code = transpiler.visit(add_function)
 
 print(python_code)
 ```
 
-Output:
+**Output:**
 
 ```python
 def add(x: int, y: int) -> int:
     return (x + y)
 ```
 
-### 3. Visualize ASTs
+### 3. ASTx Visualization Features
 
-ASTx supports multiple visualization formats:
+ASTx offers multiple ways to visualize the AST structure:
 
 - YAML
 - JSON
-- Graphical (PNG or ASCII)
+- Graphical visualization (PNG or ASCII)
 
-In a Jupyter Notebook, the default visualization is **PNG**. In a console, the
-default is **ASCII**.
+In a Jupyter Notebook, the default graphical visualization is PNG, while in a
+console, the default is ASCII.
 
-Example:
+You can also print the AST structure in JSON or YAML format. For example:
 
 ```python
 print(add_function.to_json())
@@ -133,6 +135,7 @@ language tools.
 ```python
 from astx_transpilers.python_string import ASTxPythonTranspiler
 
+# Using the 'add_function' ASTx node from the example above
 transpiler = ASTxPythonTranspiler()
 python_code = transpiler.visit(add_function)
 print(python_code)
@@ -145,8 +148,8 @@ def add(x: int, y: int) -> int:
     return (x + y)
 ```
 
-For more examples, see the
-**[transpiler tutorial](docs/tutorials/astx_transpiler_refactor_tutorial.md)**.
+For a deep dive into the architecture and more hands-on examples, check out our
+**[full transpiler tutorial](tutorials/astx_transpiler_refactor_tutorial.md)**.
 
 ---
 
@@ -157,7 +160,7 @@ Full documentation and examples:
 
 ---
 
-## 🛠️ Contributing
+## 🤝 Contributing
 
 Contributions are welcome! See the
 [Contributing Guide](https://astx.arxlang.org/contributing/) for details.
