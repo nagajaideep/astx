@@ -135,14 +135,14 @@ example:
 
 ## Transpilers
 
-ASTx includes transpilers that can convert your AST structures into Python code.
-This makes it easy to generate executable Python from your abstract
-representations.
+ASTx includes a powerful transpiler system to convert your AST structures into
+executable Python code. This is great for code generation, prototyping, or
+building custom language tools.
 
 ```python
 from astx_transpilers.python_string import ASTxPythonTranspiler
 
-# Using the same add_function from above
+# Using the 'add_function' ASTx node from the example above
 transpiler = ASTxPythonTranspiler()
 python_code = transpiler.visit(add_function)
 print(python_code)
@@ -155,9 +155,8 @@ def add(x: int, y: int) -> int:
     return (x + y)
 ```
 
-The transpiler handles various ASTx constructs including functions, variables,
-expressions, and control flow. For comprehensive examples and detailed usage,
-check out our [transpiler documentation](https://arxlang.github.io/astx).
+For a deep dive into the architecture and more hands-on examples, check out our
+**[full transpiler tutorial](docs/tutorials/astx_transpiler_refactor_tutorial.md)**.
 
 ---
 

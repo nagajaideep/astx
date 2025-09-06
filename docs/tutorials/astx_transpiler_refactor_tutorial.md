@@ -1,6 +1,8 @@
 # ASTx Transpiler Tutorial
 
-This guide walks you through using ASTx's transpiler system to convert your AST structures into Python code. We've redesigned the transpiler with a cleaner architecture that's easier to use and maintain.
+This guide walks you through using ASTx's transpiler system to convert your AST
+structures into Python code. We've redesigned the transpiler with a cleaner
+architecture that's easier to use and maintain.
 
 ## How the Transpiler Works
 
@@ -8,7 +10,8 @@ The transpiler follows a straightforward two-step approach:
 
 ### Step 1: ASTx → Python AST Objects
 
-The `ASTxPythonASTTranspiler` converts your ASTx nodes into Python's built-in AST objects. This is useful when you need to work with the AST programmatically.
+The `ASTxPythonASTTranspiler` converts your ASTx nodes into Python's built-in
+AST objects. This is useful when you need to work with the AST programmatically.
 
 ```python
 from astx_transpilers.python_to_ast import ASTxPythonASTTranspiler
@@ -20,7 +23,9 @@ python_ast = ast_transpiler.visit(your_astx_node)
 
 ### Step 2: ASTx → Python Source Code
 
-The `ASTxPythonTranspiler` takes your ASTx nodes and produces clean, readable Python source code. Behind the scenes, it uses the AST transpiler and then converts to string format.
+The `ASTxPythonTranspiler` takes your ASTx nodes and produces clean, readable
+Python source code. Behind the scenes, it uses the AST transpiler and then
+converts to string format.
 
 ```python
 from astx_transpilers.python_string import ASTxPythonTranspiler
@@ -33,7 +38,8 @@ python_code = string_transpiler.visit(your_astx_node)
 ## What's Better About This Approach
 
 - **No more circular imports**: Each component has a single, clear job
-- **Easier debugging**: Problems in AST generation don't affect string formatting
+- **Easier debugging**: Problems in AST generation don't affect string
+  formatting
 - **More flexible**: Use AST objects directly or get formatted strings
 - **Cleaner code**: Each module focuses on one thing and does it well
 
@@ -50,6 +56,7 @@ python -m pytest libs/astx-transpilers/tests/ -v
 ### Example 1: Simple Integer Literal
 
 **Code:**
+
 ```python
 import astx
 from astx_transpilers.python_to_ast import ASTxPythonASTTranspiler
@@ -68,6 +75,7 @@ print(code_str)
 ```
 
 **Output:**
+
 ```
 <_ast.Constant value=42>
 42
@@ -78,6 +86,7 @@ print(code_str)
 ### Example 2: Lambda Expression
 
 **Code:**
+
 ```python
 import astx
 from astx_transpilers.python_string import ASTxPythonTranspiler
@@ -94,6 +103,7 @@ print(code_str)
 ```
 
 **Output:**
+
 ```python
 lambda x: x + 1
 ```
@@ -103,6 +113,7 @@ lambda x: x + 1
 ### Example 3: Mathematical Expression
 
 **Code:**
+
 ```python
 import astx
 from astx_transpilers.python_string import ASTxPythonTranspiler
@@ -125,6 +136,7 @@ print(result)
 ```
 
 **Output:**
+
 ```
 ((5 + 3) * 2)
 ```
@@ -134,6 +146,7 @@ print(result)
 ### Example 4: Function Definition
 
 **Code:**
+
 ```python
 import astx
 from astx_transpilers.python_string import ASTxPythonTranspiler
@@ -168,6 +181,7 @@ print(code_str)
 ```
 
 **Output:**
+
 ```python
 def add(x: int, y: int) -> int:
     return (x + y)
@@ -178,6 +192,7 @@ def add(x: int, y: int) -> int:
 ### Example 5: Import Statement
 
 **Code:**
+
 ```python
 import astx
 from astx_transpilers.python_string import ASTxPythonTranspiler
@@ -196,23 +211,30 @@ print(code_str)
 ```
 
 **Output:**
+
 ```python
 import os, sys
 ```
 
 ## What You Get
+
 - **AST Output:** Valid Python AST objects that can be further processed
 - **String Output:** Clean Python source code ready to execute or save to files
 
 ## Implementation Details
-The refactored transpiler provides better code organization and eliminates previous circular dependency issues. Each component now has a single, clear purpose.
+
+The refactored transpiler provides better code organization and eliminates
+previous circular dependency issues. Each component now has a single, clear
+purpose.
 
 ---
 
 **Source Files:**
+
 - `libs/astx-transpilers/src/astx_transpilers/python_to_ast.py`
 - `libs/astx-transpilers/src/astx_transpilers/python_string.py`
 
 **Tests:**
+
 - `libs/astx-transpilers/tests/test_python_to_ast.py`
 - `libs/astx-transpilers/tests/test_python_string.py`

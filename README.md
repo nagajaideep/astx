@@ -135,7 +135,9 @@ example:
 
 ## Transpilers
 
-ASTx includes a powerful transpiler system to convert your AST structures into executable Python code. This is great for code generation, prototyping, or building custom language tools.
+ASTx includes a powerful transpiler system to convert your AST structures into
+executable Python code. This is great for code generation, prototyping, or
+building custom language tools.
 
 ```python
 from astx_transpilers.python_string import ASTxPythonTranspiler
@@ -147,12 +149,14 @@ print(python_code)
 ```
 
 **Output:**
+
 ```python
 def add(x: int, y: int) -> int:
     return (x + y)
 ```
 
-For a deep dive into the architecture and more hands-on examples, check out our **[full transpiler tutorial](docs/tutorials/astx_transpiler_refactor_tutorial.md)**.
+For a deep dive into the architecture and more hands-on examples, check out our
+**[full transpiler tutorial](docs/tutorials/astx_transpiler_refactor_tutorial.md)**.
 
 ---
 
