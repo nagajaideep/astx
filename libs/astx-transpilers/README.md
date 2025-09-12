@@ -155,7 +155,7 @@ def add(x: int, y: int) -> int:
     return (x + y)
 ```
 
-For a deep dive into the architecture and more hands-on examples, check out our
+For a deep dive into the architecture and more hands-on examples, check out the
 **[full transpiler tutorial](docs/tutorials/astx_transpiler_refactor_tutorial.md)**.
 
 ---

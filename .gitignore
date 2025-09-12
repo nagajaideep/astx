@@ -100,11 +100,6 @@ ENV/
 .idea/
 
 # Ignore build artifacts and copied files
-libs/astx/dist/
-libs/astx/build/
-libs/astx/*.egg-info/
-libs/astx-transpilers/dist/
-libs/astx-transpilers/build/
-libs/astx-transpilers/*.egg-info/
-libs/astx/README.md
-libs/astx-transpilers/README.md
+dist/
+build/
+*.egg-info/
