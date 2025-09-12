@@ -27,6 +27,7 @@ repos:
         entry: ./scripts/build.sh
         language: system
         pass_filenames: false
+        stages: [manual]
 
       - id: ruff-format
         name: ruff-format

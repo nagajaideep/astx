@@ -99,14 +99,12 @@ ENV/
 .vscode/
 .idea/
 
-# Poetry/Build artifacts for library subdirectories
+# Ignore build artifacts and copied files
 libs/astx/dist/
 libs/astx/build/
 libs/astx/*.egg-info/
 libs/astx-transpilers/dist/
 libs/astx-transpilers/build/
 libs/astx-transpilers/*.egg-info/
-
-# README.md files copied during build process
 libs/astx/README.md
 libs/astx-transpilers/README.md
